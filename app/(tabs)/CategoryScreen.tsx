@@ -1,10 +1,10 @@
-import { Image, StyleSheet, Platform, View, Text } from 'react-native';
-
+import Header from '@/components/Header';
 import { useNavigation } from '@react-navigation/native';
 import { useLayoutEffect } from 'react';
-import Header from '@/components/Header';
+import { StyleSheet, Text, View } from 'react-native';
 
-const HomeScreen = () => {
+// 카테고리 페이지
+const CategoryScreen = () => {
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -15,7 +15,7 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text>홈화면</Text>
+      <Text>카테고리 스크린</Text>
     </View>
   );
 };
@@ -28,4 +28,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default CategoryScreen;
