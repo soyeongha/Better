@@ -19,8 +19,8 @@ const Header = () => {
           name="search"
           size={24}
           color="black"
-          style={[styles.icon]}
-          onPress={() => navigation.navigate('SearchScreen')}
+          style={styles.icon}
+          onPress={() => navigation.navigate('SearchScreen')} // 검색 아이콘 클릭 시 SearchScreen으로 이동
         />
         <Ionicons
           name="cart"
