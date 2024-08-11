@@ -1,33 +1,38 @@
 import React from 'react';
-import { View, Image, StyleSheet, useWindowDimensions } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-
+import { useRouter } from 'expo-router';
+// Header 컴포넌트 정의
 const Header = () => {
-  const navigation = useNavigation();
-  const { width } = useWindowDimensions(); // 화면의 너비를 가져옵니다.
+  // useRouter 훅을 사용하여 내비게이션 기능을 가져옵니다.
+  const router = useRouter();
 
   return (
+    // 상위 컨테이너 뷰
     <View style={styles.container}>
+      {/* 로고 이미지 */}
       <Image
         source={require('../assets/images/BetterIcon.jpg')}
         style={styles.logo}
         resizeMode="contain"
       />
+      {/* 아이콘들을 감싸는 컨테이너 */}
       <View style={styles.iconsContainer}>
+        {/* 검색 아이콘 */}
         <Ionicons
-          name="search"
-          size={24}
-          color="black"
-          style={styles.icon}
-          onPress={() => navigation.navigate('SearchScreen')} // 검색 아이콘 클릭 시 SearchScreen으로 이동
+          name="search" // 아이콘의 이름
+          size={24} // 아이콘 크기
+          color="black" // 아이콘 색상
+          style={styles.icon} // 아이콘 스타일
+          onPress={() => router.push('/SearchScreen')} // 검색 아이콘 클릭 시 search.js로 이동
         />
+        {/* 카트 아이콘 */}
         <Ionicons
-          name="cart"
+          name="cart" 
           size={24}
           color="black"
-          style={[styles.icon, { marginLeft: 5 }]}
-          onPress={() => navigation.navigate('CartScreen')}
+          style={[styles.icon, { marginLeft: 5 }]} // 아이콘 스타일 및 왼쪽 여백
+          onPress={() => router.push('/cartScreen')} // 카트 아이콘 클릭 시 cart.js로 이동
         />
       </View>
     </View>
@@ -36,28 +41,24 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    flexDirection: 'row',
-    height: 50,
-    backgroundColor: 'white',
-    //   justifyContent: 'center',
-    //   alignItems: 'center',
-    //   paddingHorizontal: 30, // Header의 왼쪽과 오른쪽 여백을 설정합니다.
+    width: '100%', // 전체 너비
+    flexDirection: 'row', // 수평 방향으로 아이템 배치
+    height: 50,  // 높이 설정
+    backgroundColor: 'white', // 배경색 설정
   },
   logo: {
-    width: 100,
-    height: '100%',
-    marginRight: 'auto', // 로고와 아이콘 사이에 자동으로 공간을 추가하여 아이콘을 오른쪽으로 밀어냅니다.
-    padding: 'auto',
+    width: 100, // 로고의 너비
+    height: '100%', // 로고의 높이
+    marginRight: 'auto', // 오른쪽 여백을 자동으로 설정하여 아이콘들을 오른쪽으로 밀어냄
   },
   iconsContainer: {
     backgroundColor: 'white',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end', // 아이콘들을 오른쪽 끝으로 밀어냅니다.
+    flexDirection: 'row', // 아이콘들을 수평으로 배치
+    alignItems: 'center', // 아이콘들을 세로로 중앙 정렬
+    justifyContent: 'flex-end',
   },
   icon: {
-    marginRight: 10, // 아이콘 사이의 간격을 설정합니다.
+    marginRight: 10, // 아이콘 사이의 간격 설정
   },
 });
 
