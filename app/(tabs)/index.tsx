@@ -1,6 +1,7 @@
 import BannerSlider from '@/components/BannerSlider';
 import Header from '@/components/Header';
 import { useNavigation } from '@react-navigation/native';
+import LoadingScreen from '../LoadingScreen'; // LoadingScreen 가져오기
 import React, { useState, useEffect, useLayoutEffect } from 'react'; // React 및 훅들을 가져옴
 import {
   View,
@@ -17,6 +18,7 @@ const { width } = Dimensions.get('window'); // 기기의 화면 너비를 가져
 const HomeScreen = () => {
   const [products, setProducts] = useState([]); // 신상품 목록을 관리할 상태값을 선언
   const [brands, setBrands] = useState({}); // 브랜드별 상품 목록을 관리할 상태값을 선언
+  const [isLoading, setIsLoading] = useState(true); // 로딩 상태를 관리할 상태 추가
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -64,8 +66,13 @@ const HomeScreen = () => {
         }
 
         setBrands(groupedByBrand); // 상태값에 저장
+        setIsLoading(false); // 데이터 로딩 완료 후 로딩 상태를 false로 설정
       });
   }, []); // 빈 배열을 두어 처음에만 한 번 실행되도록 설정
+
+  if (isLoading) {
+    return <LoadingScreen />; // 로딩 중일 때 LoadingScreen을 렌더링
+  }
 
   // 신상품 목록에 각 아이템을 렌더링하는 함수
   const renderProductItem = ({ item }) => {

@@ -2,7 +2,6 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-
 // tab의 레이아웃
 const TabLayout = () => {
   return (
